@@ -52,8 +52,25 @@
     
     <input type="button" style="width: 80px" onclick="javascript:location.href='/users/Buyer'"value="買家"></input>
     
-    <input type="button" style="width: 80px" onclick="javascript:location.href='/users/seller'"value="賣家"></input>
+    <input type="button" id='seller' style="width: 80px" onclick="javascript:location.href='/users/seller'"value="賣家"></input>
+    <script>
+    $("#seller").click(function() {
+    $.ajax({
+      url: '../users/seller',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        roomkey:'<%= roomkey %>',
+      },
+      success: function(data) {
 
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert(JSON.parse(XMLHttpRequest.responseText).msg);
+      }
+    })
+  });
+    </script>
   </div>
 </body>
 

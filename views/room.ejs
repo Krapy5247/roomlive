@@ -28,18 +28,18 @@
 			<ul>
 				<li><a href="/">首頁</a></li>
 				<li><a href="/users/Buyer">頻道</a></li>
-        <li><a id="car" href="/cart/cart" target="_blank ">購物車</a></li>
+        <li><a id="car" href="/cart/cart/<%= titlename %>" target="_blank ">購物車</a></li>
         <script>
             $("#car").click(function(){
               $.ajax({
-                url: '../cart/cart',
+                url: '../cart/cart/<%= titlename %>',
                 type: 'POST',
                 dataType: 'json',
                 data: {
                   sellersroom: '<%= titlename %>'
                 },
                 success: function(data) {
-                  $("#car").attr("href", "../cart/cart");
+                  $("#car").attr("href", "../cart/cart/<%= titlename %>");
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                   alert(JSON.parse(XMLHttpRequest.responseText).msg);
@@ -47,7 +47,8 @@
               })
             })
         </script>
-				<li><a href="/users/logout">登出</a></li>
+        <li><a href="/users/logout">登出</a></li>
+        
 			</ul>
 		</div>
     <div id="container">
@@ -72,6 +73,7 @@
         player.load();
       </script>
     </div>
+    <button id='test' type="button" class="btn btn-primary">test</button>
       <script>
         var socket = io.connect();
   
@@ -81,11 +83,14 @@
         socket.on('disconnect', () => {
           socket.open();
         });
-  
+        
+        var room = '<%= titlename %>'; 
         socket.on('roomMsg', (data) =>{
           console.log(data);
         });
-  
+        $("#test").click(function() {
+          socket.emit('roomMsg',{roomid:'<%= title %>',msg:'<%=roomlist%>'}); // false
+        });
         socket.on('message', (obj) => {
           console.log(obj);
           appendData([obj]);
@@ -114,11 +119,11 @@
           el.innerHTML = html.trim();
           scrollWindow();       //下捲ㄉ
         };
-        
+        /*
         document.querySelector('button').addEventListener('click', () => {
           Send();
         });
-  
+        */
         function Send() {
           let name = '<%= chatname %>';
           let msg = document.querySelector('#msg').value;

@@ -27,7 +27,7 @@ module.exports = function(httpsServer) {
     socket.on('roomMsg', (data) =>{
       //根據房間id傳輸給房內所有socket
       io.to(data.roomid).emit('roomMsg',data);
-      //console.log(data);
+      console.log(data.msg);
     });
 
     //chat messages

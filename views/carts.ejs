@@ -7,18 +7,18 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 	
 	<input type="text" name='sellername' value=<%= sellername %> readonly="readonly" hidden>
-	<a href="/cart/cart">商品列表</a>
+	<a href="/cart/cart/<%= sellername %>">商品列表</a>
 	<script>
         $("#car").click(function(){
           $.ajax({
-            url: '../cart/cart',
+            url: '../cart/cart/<%= sellername %>',
             type: 'POST',
             dataType: 'json',
             data: {
               sellersroom: '<%= sellername %>'
             },
             success: function(data) {
-              $("#car").attr("href", "../cart/cart");
+              $("#car").attr("href", "../cart/cart/<%= sellername %>");
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
               alert(JSON.parse(XMLHttpRequest.responseText).msg);

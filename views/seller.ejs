@@ -57,7 +57,7 @@
   <h2>房間列表</h1>
   <!-- 取得現有房間並建立連結-->
  
-
+    <div>津要: <%= roomkey %></div>
   </br>
   <input type="text" name="roomname" id="roomname" placeholder="標題" > <br>
   <!-- <input type="text" name="class" id="class" placeholder="類別"><br> -->
@@ -78,7 +78,8 @@
         choice:'1',
         roomname: $('#roomname').val(), //房名   
         rtmp01: "https://vm214.ims.ice.cyut.edu.tw/dash/",
-        rtmp02: ".mpd",
+        rtmp02:'<%= roomkey %>',
+        rtmp03: ".mpd",
       },
       success: function(data) {
         //根據後端傳送回來的房間id進行轉跳
