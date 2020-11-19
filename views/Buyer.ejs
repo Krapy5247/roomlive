@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <title>直播o_ob(買</title>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/jquery-3.4.1.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/popper.min.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/bootstrap.min.css">
+  
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/dash.all.min.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/video.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/videojs-dash.min.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap-filestyle.min.js"></script>
+    <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/video-js-cdn.min.css">
+    <style>
+      
+      a{
+        float:right;
+        font-size: 30px;
+      }
+      H1{
+        font-size: 80px;
+        background:rgb(177, 214, 177);
+        font-weight: bold;
+        height:100px;  
+      }
+      H2{
+        font-size:30px;
+      }
+      div{
+        font-size: 30px;
+      }
+      button{
+        font-size: 25px;
+      }
+      body{
+        background-color: lightgreen;
+    }
+    </style>
+</head>
+
+<body>
+  <a href="/users/logout">登出</a>
+  <h1 align=center>直播平台</h1>
+  <div >用戶名: <%= user %></div>
+  </br>
+  <h2>房間列表</h2>
+  </br>
+  <!-- 取得現有房間並建立連結-->
+  <% for (var key in list) {%>
+    <button type="button" id='<%=key%>' class="btn btn-primary" onclick="location.href='../room?id=<%= key %>'">進入<%= key %></button>
+    <script>
+      /*
+    $("#<%=key%>").click(function() {
+      $.ajax({
+        url: '../room',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          titlename:'<%=key%>'
+        },
+        success: function(data) {
+
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          alert(JSON.parse(XMLHttpRequest.responseText).msg);
+        }
+      })
+    });
+    */
+    </script>
+  </br>
+  <% }%>
+  </br>
+  
+</body>
+
+
+
+</html>

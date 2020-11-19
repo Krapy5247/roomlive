@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="http://www.xiaoshu168.com/js/public/jquery.min.js"></script>
+</head>
+<style>
+    h1{
+        font-size: 50px;
+    }   
+</style>
+<% include header %>
+
+    <h1>增加商品</h1>
+    <form method="post">
+        房間：<input type="test" name="sellername" value='<%= Roomname %>' disabled>
+        商品：<input type="text" name="name">
+        價錢：<input type="text" name="money_id">
+        <button type="submit">新增</button>
+        <input value="sdgsdg" id="demo_input" type="file">
+        <textarea id="result" name="result" type="text"></textarea>
+        <p id="img_area"></p>
+    </form>
+
+<% include footer %>
+<body>
+<script>
+    window.onload = function() {
+        var input = document.getElementById("demo_input");
+        var result = document.getElementById("result");
+        var img_area = document.getElementById("img_area");
+        if (typeof(FileReader) === 'undefined'){
+            result.innerHTML = "ERROR！";
+            input.setAttribute('disabled','disabled');
+        } else{
+            input.addEventListener('change', readFile, false);
+        }
+    }
+    function readFile() {
+        var FileSize = document.getElementById("demo_input").files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 1) {
+           alert('上傳檔案大小不得超過 1 MB！');
+           return false;
+        } 
+        var file = document.getElementById("demo_input").files[0];
+        console.log(file);
+        //这里我们判断下类型如果不是图片就返回 去掉就可以上传任意文件
+        if (!/image\/\w+/.test(file.type)){
+            alert("確認是否為圖像類型");
+            return false;
+        }
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function(e) {
+            result.innerHTML = this.result;
+            img_area.innerHTML = '<div class="sitetip">圖片</div><img src="' + this.result + '" alt=""/>';
+            console.log(this.result);
+        }
+    }
+</script>
+</body>
+</html>

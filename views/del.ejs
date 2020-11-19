@@ -1,0 +1,15 @@
+<% include header %>
+    <h1>删除商品</h1>
+    <form method="post">
+        <ul>
+            <% for(var i = 0; i < result.length; i++) { %>
+            <li>
+                <label for="student">商品：<%= result[i].productname %>，價錢：<%= result[i].moneyId %></label>
+                <input type="radio" name="student" value=<%= result[i]._id%>>
+                <img width=200 height=200 src= "<%= result[i].image %>">
+            </li>
+            <% } %>
+        </ul>
+        <button type="submit">刪除</button>
+    </form>
+<% include footer %>

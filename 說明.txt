@@ -1,0 +1,24 @@
+開啟方式 node app.js
+
+操作步驟:
+
+1.http://127.0.0.1:7000 即可進入首頁
+2.進入首頁，可透過建立房間按鈕建立房間，如已經有房間就可以看到進入房間的連結
+3.加入或建立房間後都會轉換到房間頁面，此時請按F12打開控制台選擇到console觀看稍後訊息傳輸狀況
+4.請多開web並進入同一間房，並觀察點擊send後的結果
+5.請多開web並建立多房間並房間內有多名用戶，並觀察點擊send後的結果
+
+routes/index.js - 首頁路由
+routes/room.js - 房間路由
+
+views/index.ejs - 首頁模板
+views/room.ejs - 房間模板
+
+models/mysocket.js - websocket模組
+models/roomlist.js - 房間列表模組
+
+注意：
+本範例用途在於讓你們理解如何建立複數房間，請理解後加入到你們的程式碼
+
+聊天室相關資料
+https://socket.io/docs/rooms/

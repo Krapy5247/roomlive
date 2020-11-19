@@ -1,0 +1,141 @@
+@import url(reset.css);
+        body {
+          margin: 0 auto;
+    /*background-color:#E8FFC4;
+    /*font-family:Arial,"微軟正黑體";*/
+        }
+    /* header*/
+        #HEADER{
+          font-size: 70px;
+          font-weight: bold;
+        }
+
+        #HEADER h1{
+          widows: 360px;
+          height: 80px;
+          text-align: center;
+          background:rgb(177, 214, 177);
+        
+        /*text-indent: -9999px; 隱藏文字*/
+        }
+
+    /*nav*/
+        #NAV{
+            width: 1460px;
+            overflow: hidden;
+        }
+    
+        #NAV ul{
+          margin: 0 auto;
+        }
+
+        #NAV li{
+          float: left;
+        }
+
+        #NAV li a{
+          display: block;             /*超連結*/
+          width: 365px;               
+          height: 50px;
+          line-height: 50px;          /*文字高度置中*/
+          background-color: #FF9D6F;      /*按鈕背景顏色*/
+          font-size: 15px;
+          color: #FFF;
+          letter-spacing: 2px;
+          text-align: center;         /*文字水平置中*/
+          text-decoration: none;
+        }
+
+        #NAV li a:hover{
+            background-color: #D94600;  /*游標指向時顏色*/
+        }
+
+        #container {
+          width: 500px;
+          margin: 0 auto;
+          display: block;
+          position: relative;
+          float: right ;
+        }
+
+        #CONTENTC{    
+          overflow: hidden;
+        }
+
+        .chats {
+          padding: 10px 5px;
+          height: 490px;
+          width: 100%;
+          background: #eee;
+          overflow-y: scroll;
+        }
+        
+        .chats .chat {
+          display: flex;
+          margin: 5px 0;
+        }
+        
+        .chats .chat .group {
+          display: inherit;
+          word-wrap: normal;
+        }
+        
+        .chats .chat .group .name {
+          padding: 0 10px;
+          font-weight: bold;
+        }
+        
+        .chats .chat .time {
+          padding-left: 10px;
+          font-size: 10px;
+          line-height: 18px;
+          color: #aaa;
+        }
+        
+        .message {
+          margin-top: 10px;
+        }
+        
+        .message input {
+          padding: 0 5px;
+          height: 25px;
+          width: 300px;
+        }
+        
+        .message input:first-child {
+          width: 380px;
+        }
+        
+        .message button {
+          height: 32px;
+          width: 100px;
+          box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+
+        #CONTENTC{
+            overflow: hidden;
+        }
+
+        #CONTENT p{
+          margin: 0 auto;
+        }
+        
+        /*footer*/
+        #FOOTER{
+          margin: 0 auto;
+        }
+
+        #FOOTER h2{
+          margin: 0 auto;
+        }
+        
+        /*com css*/
+        
+        body {
+          /*padding: 10px;*/
+          font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+          background-color: lightgreen;
+         
+        }
+        
+       

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/jquery-3.4.1.js"></script>
+    <title>商品列表</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <a id='car' href="/cart/carts">購物車</a>
+    <h1 class=room> <input type="text" name='sellername' value=<%= sellername %> readonly="readonly" hidden>商品列表：</h1>
+    <script>
+        $("#car").click(function(){
+          $.ajax({
+            url: '../cart/carts',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+              sellersroom: '<%= sellername %>'
+            },
+            success: function(data) {
+              $("#car").attr("href", "../cart/carts");
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              alert(JSON.parse(XMLHttpRequest.responseText).msg);
+            }
+          })
+        })
+    </script>
+    <form method="post">
+    <ul>
+       
+        <% for(var i = 0; i < result.length; i++) { %>
+            <li>
+            商品：<input type="text" name="productname" value=<%= result[i].productname %> readonly="readonly">
+            價錢：<input id="money_id<%=i%>" type="text" name="money_id" value=<%= result[i].moneyId %> readonly="readonly">
+            數量：
+            <input id="min<%=i%>" name="" type="button" value="-"/>
+            <input id="num<%=i%>" name="count" type="text" value="1" readonly="readonly"/>
+            <input id="add<%=i%>" name="" type="button" value="+"/>
+            <input hidden type="text" name="_id" value=<%= result[i]._id %>>
+            <input type="radio" name='num' value=<%= i %>>
+            
+
+            
+            <script>
+                $(function(){
+                    var t = $("#num<%=i%>");
+						$("#add<%=i%>").click(function(){
+							t.val(parseInt(t.val())+1);
+							$("#min<%=i%>").removeAttr("disabled");                 //當按加1時，解除$("#min")不可讀狀態
+					})
+						$("#min<%=i%>").click(function(){
+							   if (parseInt(t.val())>1) {                     //判斷數量值大於1時才可以減少
+								   t.val(parseInt(t.val())-1)
+							}else{
+								$("#min<%=i%>").attr("disabled","disabled")        //當$("#min")為1時，$("#min")不可讀狀態
+							   }
+                    })
+                    
+                });
+            </script>
+            </li>
+        <% } %>
+    </ul>
+    
+    <button type="submit" >加入購物車</button>
+    </form>
+    </br>
+    <script>
+        
+    </script>
+    
+    
+<% include footer %>

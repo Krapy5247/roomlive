@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Express Passport</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <style>
+    H1{
+      font-size: 80px;
+      background:rgb(177, 214, 177);
+      font-weight: bold;
+      height:100px;
+      
+    }
+    h2{
+      height:50px;
+    }
+    div {
+      font-size: 50px;
+      text-align:center;
+      overflow: hidden; 
+      height: auto;
+    }
+    input{
+      font-size:30px;
+      width: 50px;
+      overflow: hidden; 
+      float: center;
+      text-align :center;
+      margin: 0 auto; 
+      text-decoration: none; 
+    }
+    a{
+      font-size: 30px;
+      float:right;
+      text-align :right;
+      height:0px;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="/users/logout">登出</a>
+  <h1 align=center>選擇買賣家</h1>
+
+  <h2> </h2>
+  <div id="user" align=center>用戶名: <%= user %></div>
+  <div id="roomkey" align=center>金鑰: <%= roomkey %></div>
+  
+  </br>
+  <div  align="center">
+    
+    <input type="button" style="width: 80px" onclick="javascript:location.href='/users/Buyer'"value="買家"></input>
+    
+    <input type="button" style="width: 80px" onclick="javascript:location.href='/users/seller'"value="賣家"></input>
+
+  </div>
+</body>
+
+</html>

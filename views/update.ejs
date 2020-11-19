@@ -1,0 +1,18 @@
+
+<% include header %>
+    <h1>修改商品</h1>
+    <form method="post">
+        <ul>
+            <% for(var i = 0; i < result.length; i++) { %>
+            <li>
+                商品：<input type="text" name="productname" value=<%= result[i].productname %>>
+                價錢：<input type="text" name="money_id" value=<%= result[i].moneyId %>>
+                <input hidden type="text" name="_id" value=<%= result[i]._id %>>
+                <input type="radio" name='num' value=<%= i %>>
+                <img width=200 height=200 src= "<%= result[i].image %>">
+            </li>
+            <% } %>
+        </ul>
+        <button type="submit">更新</button>
+    </form>
+<% include footer %>

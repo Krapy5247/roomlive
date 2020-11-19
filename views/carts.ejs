@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>購物車列表</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	
+	<input type="text" name='sellername' value=<%= sellername %> readonly="readonly" hidden>
+	<a href="/cart/cart">商品列表</a>
+	<script>
+        $("#car").click(function(){
+          $.ajax({
+            url: '../cart/cart',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+              sellersroom: '<%= sellername %>'
+            },
+            success: function(data) {
+              $("#car").attr("href", "../cart/cart");
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              alert(JSON.parse(XMLHttpRequest.responseText).msg);
+            }
+          })
+        })
+    </script>
+    <h1 class=room>購物車列表</h1>
+    
+    <form id='myform' method='POST' action='#'>
+		<tbody>
+			<script>
+				var x=0;
+				var co = [];
+			</script>
+			<% for(var i = 0; i < result.length; i++) { %>
+				<ul>
+					<li>商品：<span type="text" name="productname" value='<%= result[i].productname %>' readonly="readonly" ><%= result[i].Pname %></li>
+					<li>單價：<input type="text" id="money_id<%=i%>"  name="money_id" value='<%= result[i].moneyId %>' readonly="readonly" disabled></li>
+					<li>數量：<input type="text" id="count<%=i%>" value="<%= result[i].count %>" readonly="readonly" disabled></li>
+					<li>價錢：<span type="text" id="aaa<%=i%>" value="" readonly="readonly"></span>
+					&emsp; <button type="submit" name="carts" value=<%= result[i]._id%>>刪除</button></li>
+				</ul>
+				<br>
+				<script>
+					
+
+						var test1 = $("#money_id<%=i%>");
+						var test2 = $("#count<%=i%>");
+						var sumSP = $("#aaa<%=i%>");
+	
+						var test001 = test1.val();
+						var test002 = test2.val();
+	
+						var sum = (test001-0)*(test002-0);
+						sumSP.text(sum);
+
+						//console.log(<%= result[i].testsum %>);
+						co.push(<%= result[i].testsum %>);
+						
+						x++;
+
+					
+				</script>
+				<% } %>
+				<tr>
+					總金額：<span id="ccc"></span>元
+				</tr>
+				<script>
+					var sss=0;
+					var jjj=$("#ccc");
+					for(var o=0;o<=x-1;o++){
+						sss += co[o];
+					}
+					//console.log(sss)
+					jjj.text(sss);
+					
+				</script>
+				<button type="submit" id="finish" name="Check" >結單</button>
+		</tbody>
+		<script>
+			$("#finish").click(function() {
+				$.ajax({
+
+				})
+			}
+		</script>
+    </form>
+</br>
+<% include footer %>

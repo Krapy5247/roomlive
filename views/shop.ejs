@@ -1,0 +1,35 @@
+
+<style>
+    
+    h1.room{
+        font-size: 30px; 
+        
+    }
+    /*ul.a{
+        width:100px;
+        height:50px;
+        overflow: hidden;
+        margin:auto;
+        letter-spacing: 2px;
+        text-decoration: none;
+    }*/
+    
+    body{
+        padding:10px;
+        background-color: lightgreen;
+    }
+</style>
+    <% include header %>
+    <h1 class=room>商品列表：</h1>
+    <ul>
+        <% for(var i = 0; i < result.length; i++) { %>
+            <li>商品：<%= result[i].productname %>，價錢：<%= result[i].moneyId %>元
+             <img width=200 height=200 src= "<%= result[i].image %>">
+        <% } %>
+        
+    </ul>
+    </br>
+    
+    
+    
+<% include footer %>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Express Passport</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <style>
+    H1 {
+      font-size: 80px;
+      background:rgb(177, 214, 177);
+      widows: 36px;
+      height: 100px; 
+      font-weight: bold;
+      text-align :center;
+    }
+    H2 {
+      font-size: 25px;
+      font-weight: bold;
+      text-align :center;
+      
+    }
+    H3{
+      height:100px;
+    }
+    #box {
+      height:200px;
+      width:300px;
+      background-color:lightblue;
+      font-family:sans-serif;     
+      margin:auto;
+      border:10px #cccccc solid;
+      padding:20px;
+      text-align:center;
+      }
+    button{
+      
+      width: 50px;
+      overflow: hidden; 
+      float: center;
+      text-align :center;
+      margin: 0 auto; 
+      text-decoration: none; 
+    }
+    
+    </style>
+</head>
+
+<body>
+  
+  <h1>直播平台</h1>
+  <h3> </h3>
+  <form method="post" action="/users/signin">
+    <div id="box">
+      <h2>登入</h2>
+      <br><div class="form-group" align="center">
+        <label>Username:</label>
+        <input type="text" class="form-control" name="username" placeholder="Username">
+      </div></br>
+      <br><div class="form-group" align="center">
+        <label>Password :</label>
+        <input type="password" class="form-control" name="password" placeholder="Password">
+      </div></br>
+    
+      <div align="center">
+        <button type="submit"class="btn btn-default">登入</button>
+        <input type="button" style="width: 50px" onclick="javascript:location.href='/'"value="首頁"></input>
+      </div>
+    </div>
+  </form>
+</body>
+
+</html>

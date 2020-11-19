@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>商品列表</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <style>
+      h1{
+        font-weight: bold;
+        font-size: 80px;
+      }
+      #a{
+        width: 1500px;
+        overflow: hidden;
+      }
+    
+      #a ul{
+        margin: 0 auto;
+      }
+
+      #a li{
+        float: left;
+      }
+
+      #a li a{
+        display: block;             /*超連結*/
+        width: 370px;               
+        height: 50px;
+        line-height: 50px;          /*文字高度置中*/
+        background-color: #8a7f7b;      /*按鈕背景顏色*/
+        font-size: 15px;
+        color: #FFF;
+        letter-spacing: 2px;
+        text-align: center;         /*文字水平置中*/
+        text-decoration: none;
+      }
+      #a li a:hover{
+        background-color: #634e44;  /*游標指向時顏色*/
+      }
+    </style>
+    <!--input type="submit" class="btn btn-default" onclick="location.href='/users/Buyer'">房間</input-->
+  </head>
+  <body>
+    
+    <div id=a>
+      <ul>
+      
+      <li><a href="/com/create" >增加</a></li>
+      <li><a href="/com/update" >修改</a></li>
+      <li><a href="/com/reach" >查找</a></li>
+      <li><a href="/com/del" >刪除</a></li>
+      <li><a href="/com/del" >訂單</a></li> <!--還沒做-->>
+      </ul>
+  </div>
+  </body>
+</html>

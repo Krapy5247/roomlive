@@ -1,0 +1,18 @@
+<% include header %>
+    <h1>查找商品</h1>
+    <form method="post">
+        <input type="radio" checked name="reach_type" value="0" id="_1">
+        <label for="_1">按商品查找</label>
+        <input type="radio" name="reach_type" value="1" id="_2">
+        <label for="_2">按價錢查找</label>
+        <br><br>
+        <input type="text" name="keyword">
+        <button type="submit">查找</button>
+    </form>
+    <% if(result) { %>
+        <h2>结果：</h2>
+        商品：<%= result[0].productname %>，價錢：<%= result[0].moneyId %>，<img width=200 height=200 src=<%= result[0].image %>>
+        <br><br><br>
+        <a href='/com/shop'>返回</a>
+    <% } %>
+<% include footer %>
