@@ -1,35 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>商品列表</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/bootstrap.min.css">
+  <style>
+        #shop h1{
+            font-size: 50px;
+            font-weight: bold;   
+        }
+        #user {
+            float: right ;
+            margin: auto;
+            width:auto;
+            height: 0px;
+            font-size: 30px;
+        }
+        .head{
+          font-weight: bold;
+          font-size: 40px;
+        }
+        body {
+            background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/2019CYUT_seal.jpg/1200px-2019CYUT_seal.jpg');
+            background-repeat: no-repeat;
+            background-position: 30px 60px;           
+            background-size: 10%;           
+       }
+    </style>
+</head>
 
-<style>
-    
-    h1.room{
-        font-size: 30px; 
-        
-    }
-    /*ul.a{
-        width:100px;
-        height:50px;
-        overflow: hidden;
-        margin:auto;
-        letter-spacing: 2px;
-        text-decoration: none;
-    }*/
-    
-    body{
-        padding:10px;
-        background-color: lightgreen;
-    }
-</style>
-    <% include header %>
-    <h1 class=room>商品列表：</h1>
-    <ul>
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light row" style="max-height: 60px!important;">
+      <a class="navbar-brand head " href="/"> 直播平台 </a>
+      
+      <div class="col"></div>
+      <h1 class="navbar-brand head col-1">商品列表</h1>
+      <div class="col"></div>
+      <div  class="my-2 my-lg-0 ">
+        <p style="font-size: 25px;">用戶名: <%= sellername %>
+        <a href="/users/logout">登出</a></p>
+      </div>
+    </nav>
+  </div>
+<div align=center>
+    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/com/create'" target="_blank">上架商品</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/com/update'" target="_blank">修改商品</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/com/del'" target="_blank">下架商品</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='../cart/finishsell'" target="_blank">訂單</button>
+</div>
+</br>
+    <div class="container-fluid">
+      <div align=center>
+      <table class="table col-8" >
+        <thead style="font-size: 20px; text-align: center;">
+            <tr>
+              <th scope="col">商品名稱</th>
+              <th scope="col">價錢</th>
+              <th scope="col">商品圖片</th>
+            </tr>
+        </thead>
+        <tbody style="font-size: 24px; text-align: center;">
         <% for(var i = 0; i < result.length; i++) { %>
-            <li>商品：<%= result[i].productname %>，價錢：<%= result[i].moneyId %>元
-             <img width=200 height=200 src= "<%= result[i].image %>">
+            <tr>
+                <th style="vertical-align:middle;"><%= result[i].productname %></th>
+                <th style="vertical-align:middle;"><%= result[i].moneyId %>元</th>
+                <th style="vertical-align:middle;"><img width=150 height=150 src= "<%= result[i].image %>"></th>              
+            </tr>
         <% } %>
-        
-    </ul>
+        </tbody>
+    </table>
+    </div>
+    </div>
     </br>
-    
-    
-    
 <% include footer %>
+

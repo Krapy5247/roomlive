@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<title>訂單確認(買</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/bootstrap.min.css">
+
+	</head>
+	<style>
+		h1{
+			font-size: 50px;
+			font-weight: bold;
+		}
+		#user {
+			float: right ;
+			margin: auto;
+			width:auto;
+			height: 0px;
+			font-size: 30px;
+		} 
+		#shop {
+			float: left ;
+			margin: auto;
+			width:auto;
+			height:0px;    
+		}
+		#shop a button{
+			float: left ;
+			margin: auto;
+			width:auto;
+			height: 0px;
+			font-size: 30px;
+		}
+		#end{
+			font-size: 30px;
+	
+    }
+    #sb{
+      font-size: 25px;
+    }
+    body {
+            background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/2019CYUT_seal.jpg/1200px-2019CYUT_seal.jpg');
+            background-repeat: no-repeat;
+            background-position: left+top;           
+            background-size: 10%;           
+      }
+	</style>	
+<div id="user">
+   
+  <input hidden type="text" name="dataname" value='<%= buyername %>' disabled>
+</div>
+<h1 class=room align=center>買家訂單確認</h1>
+<div align=center id=sb>
+        賣家:<span  type="text" name='sellername' value='<%= sellername %>' readonly="readonly" disabled><%= sellername %>
+        買家:<span  type="text" name='buyername' value='<%= buyername %>' readonly="readonly" disabled><%= buyername %>
+</div>
+<div align=center>
+<form id='myform' method='POST' action='#'>
+  <table class="table col-8">
+      
+    <br>
+    <thead style="font-size: 20px; text-align: center;">
+        <tr>
+          <th></th>
+          <th scope="col">商品名稱</th>
+          <th SCOPE="col">單價</th>
+          <th scope="col">數量</th>
+          <th scope="col">價錢</th>
+          <th></th>
+        </tr>
+    </thead>
+    <tbody style="font-size: 24px; text-align: center;">
+    <script>
+      var x=0;
+      var co = [];
+    </script>
+    <% for(var i = 0; i < result.length; i++) { %>
+      <tr>
+        <th></th>
+        <th>商品：<span type="text" id="productname<%=i%>" value='<%= result[i].productname %>' readonly="readonly" ><%= result[i].productname %></th>
+        <th>單價：<span type="text" id="money_id<%=i%>"  name="money_id" value='<%= result[i].moneyId %>' readonly="readonly" disabled><%= result[i].moneyId %></th>
+        <th>數量：<span type="text" id="count<%=i%>" value="<%= result[i].count %>" readonly="readonly" disabled><%= result[i].count %></th>
+        <th>價錢：<span type="text" id="aaa<%=i%>" value="<%= result[i].testsum %>" readonly="readonly" disabled><%= result[i].testsum %></span></th>
+      </tr>
+    
+      <script>
+
+        var test1 = <%- result[i].moneyId %>;
+				var test2 = <%- result[i].count %>;
+				var sumSP = $("#aaa<%=i%>");
+
+        var sum = (test1)*(test2);
+        sumSP.text(sum);
+
+        //console.log(<%= result[i].testsum %>);	
+        co.push(<%= result[i].testsum %>);        
+        x++;      
+      </script>    
+    <% } %>
+    </tbody>
+  </table>
+</form> 
+</div>
+    <br>
+    <div align=center id=end>
+      總金額：<span id="ccc"></span>元
+    
+      <script>
+        var sss=0;
+        var jjj=$("#ccc");
+        for(var o=0;o<=x-1;o++){
+          sss += co[o];
+        }
+        //console.log(sss)
+        jjj.text(sss);
+      
+      </script>
+    </div>
+
+</br>
+  
+
+
+
+
+<% include footer %>

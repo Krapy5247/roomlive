@@ -1,4 +1,6 @@
 const comModel = require('../models/my_com')
+const cartModel = require('../models/my_cart')
+var roomlist = require('../models/roomlist');
 const User = require('../models/user')
 var express = require('express');
 var router = express.Router();
@@ -8,7 +10,7 @@ var router = express.Router();
         let response = res
         comModel.find({sellername:req.user.username}, (err, result, res) => {
             if(err) return console.log(err)
-            response.render('shop', { result })
+            response.render('shop', { result, sellername:req.user.username})
         })
     })
 
@@ -32,7 +34,7 @@ var router = express.Router();
         let response = res
         comModel.find({sellername:req.user.username}, (err, result, res) => {
             if(err) return console.log(err)
-            response.render('del', { result })
+            response.render('del', { result,Roomname: req.user.username })
         })
     })
     router.post('/del', (req, res, next) => {
@@ -47,7 +49,7 @@ var router = express.Router();
         let response = res
         comModel.find({sellername:req.user.username}, (err, result, res) => {
             if(err) return console.log(err)
-            response.render('update', { result })
+            response.render('update', { result,Roomname: req.user.username })
         })
     })
     router.post('/update', (req, res, next) => {
@@ -86,4 +88,5 @@ var router = express.Router();
             })
         }
     })
+
     module.exports = router;

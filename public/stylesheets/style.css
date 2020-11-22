@@ -60,11 +60,12 @@
 
         #CONTENTC{    
           overflow: hidden;
+          float:left;
         }
 
         .chats {
           padding: 10px 5px;
-          height: 490px;
+          height: 86vh;
           width: 100%;
           background: #eee;
           overflow-y: scroll;
@@ -131,11 +132,3 @@
         
         /*com css*/
         
-        body {
-          /*padding: 10px;*/
-          font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
-          background-color: lightgreen;
-         
-        }
-        
-       

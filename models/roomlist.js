@@ -1,4 +1,5 @@
 var list = {};
+var listbuy = {};
 module.exports = {
   getList: function() {
     return list;
@@ -8,5 +9,8 @@ module.exports = {
       delete list[key];
     }
     return list;
+  },
+  buyList: function(){
+    return listbuy;
   }
 };

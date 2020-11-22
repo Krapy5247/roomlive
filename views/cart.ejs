@@ -4,32 +4,153 @@
     <script src="https://store.ims.ice.cyut.edu.tw/javascript/jquery-3.4.1.js"></script>
     <title>商品列表</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+</head>
+<style>
+    h1{
+        font-size: 50px;
+        font-weight: bold;
+    }
+    #shop p {
+        float: right ;
+        margin: auto;
+        width:auto;
+        height:0px;
+        font-size: 30px;
+    } 
+    #shop {
+        float: right;
+        margin: auto;
+        width:auto;
+        height:0px;    
+    }
+    #shop a button{
+        float: right ;
+        margin: auto;
+        width:auto;
+        height: 0px;
+        font-size: 30px;
+        padding:0px;
+    }
+    body {
+            background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/2019CYUT_seal.jpg/1200px-2019CYUT_seal.jpg');
+            background-repeat: no-repeat;
+            background-position: 30px 60px;           
+            background-size: 10%;           
+      }
+</style> 
+<div id="shop" align=center> 
+  
+    <p align=center>賣家：<label for="num"><%= sellername %></label>  
+      &nbsp;
+    <input hidden type="text" name="dataname" value='<%= sellername %>' disabled>
+    <a align=center><button type="button" class="btn btn-link"onclick="location.href='/cart/carts/<%= sellername %>'">購物車</button></a>
+    </p> 
+</div>
+<h1 class=room> <input type="text" name='sellername' value=<%= sellername %> readonly="readonly" hidden>商品列表</h1>
 
-    <a id='car' href="/cart/carts/<%= sellername %>">購物車</a>
-    <h1 class=room> <input type="text" name='sellername' value=<%= sellername %> readonly="readonly" hidden>商品列表：</h1>
+
+</br>
     <script>
-        $("#car").click(function(){
-          $.ajax({
-            url: '../cart/carts/<%= sellername %>',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-              sellersroom: '<%= sellername %>'
-            },
-            success: function(data) {
-              $("#car").attr("href", "../cart/carts/<%= sellername %>");
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-              alert(JSON.parse(XMLHttpRequest.responseText).msg);
-            }
-          })
+      $("#car").click(function(){
+        $.ajax({
+          url: '../cart/carts/<%= sellername %>',
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            sellersroom: '<%= sellername %>'
+          },
+          success: function(data) {
+            $("#car").attr("href", ".../cart/carts/<%= sellername %>");
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert(JSON.parse(XMLHttpRequest.responseText).msg);
+          }
         })
-    </script>
-    <form method="post">
+      })
+      $("#go").click(function(){
+        $.ajax({
+          url: '../../cart/cart/<%= sellername %>',
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            sellersroom: '<%= sellername %>'
+          },
+          success: function(data) {
+            $("#go").attr("href", "../../cart/cart/<%= sellername %>");
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert(JSON.parse(XMLHttpRequest.responseText).msg);
+          }
+        })
+      })
+  </script>
+<div align=center>
+<form method="post">
+  <table class="table col-8">
+      <thead style="font-size: 20px; text-align:center">
+          <tr>
+            <th scope="col">請選取</th>
+            <th scope="col">商品名稱</th>
+            <th scope="col">價錢</th>
+            <th scope="col">數量</th>
+            <th scope="col">商品圖片</th>
+          </tr>
+      </thead>
+      <tbody>
+      <% for(var i = 0; i < result.length; i++) { %>
+          <tr>
+              <th style="vertical-align:middle;"><input type="radio" name='num' value=<%= i %>></th>
+              <th style="vertical-align:middle;"><input type="text" name="productname" value=<%= result[i].productname %> readonly="readonly"></th>
+              <th style="vertical-align:middle;"><input id="money_id<%=i%>" type="text" name="money_id" value=<%= result[i].moneyId %> readonly="readonly"></th>
+              
+              <th style="vertical-align:middle;"><input id="min<%=i%>" name="" type="button" value="-"/>
+              <input id="num<%=i%>" name="count" type="text" value="1" readonly="readonly"/>
+              <input id="add<%=i%>" name="" type="button" value="+"/>
+              <th style="vertical-align:middle;"><img width=150 height=150 src= "<%= result[i].image %>"></th>
+              <input hidden type="text" name="_id" value=<%= result[i]._id %>></th>
+          
+                
+      </tbody>
+      
+
+      <script>
+          $(function(){
+              var t = $("#num<%=i%>");
+      $("#add<%=i%>").click(function(){
+        t.val(parseInt(t.val())+1);
+        $("#min<%=i%>").removeAttr("disabled");                 //當按加1時，解除$("#min")不可讀狀態
+      })
+      $("#min<%=i%>").click(function(){
+           if (parseInt(t.val())>1) {                     //判斷數量值大於1時才可以減少
+             t.val(parseInt(t.val())-1)
+        }else{
+          $("#min<%=i%>").attr("disabled","disabled")        //當$("#min")為1時，$("#min")不可讀狀態
+           }
+              })
+              
+          });
+      </script>
+  <% } %>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th><button type="submit"class="btn btn-primary btn-lg" >加入購物車</button></th>
+  </tr>
+  </table>
+
+</form>
+</div>
+
+    <!--form method="post">
     <ul>
        
         <% for(var i = 0; i < result.length; i++) { %>
             <li>
+            
             商品：<input type="text" name="productname" value=<%= result[i].productname %> readonly="readonly">
             價錢：<input id="money_id<%=i%>" type="text" name="money_id" value=<%= result[i].moneyId %> readonly="readonly">
             數量：
@@ -63,7 +184,7 @@
     </ul>
     
     <button type="submit" >加入購物車</button>
-    </form>
+    </form-->
     </br>
     <script>
         

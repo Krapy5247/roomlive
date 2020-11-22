@@ -10,9 +10,9 @@ const classSchema = new mongoose.Schema({
     productname: String,
     moneyId: Number,
     buyername: String,
+    sellername:String,
     count: Number,
     testsum: Number,
-    sellernick: String
 })
 
 const cartModel = mongoose.model('newCart', classSchema)

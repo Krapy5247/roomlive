@@ -1,62 +1,81 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <link rel="shortcut icon" href="/favicon.ico" >
-  <title><%= title %></title>
-  <script src="https://store.ims.ice.cyut.edu.tw/javascript/jquery-3.4.1.js"></script>
-  <script src="https://store.ims.ice.cyut.edu.tw/javascript/popper.min.js"></script>
-  <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/bootstrap.min.css">
-
-  <script src="https://store.ims.ice.cyut.edu.tw/javascript/dash.all.min.js"></script>
-  <script src="https://store.ims.ice.cyut.edu.tw/javascript/video.js"></script>
-  <script src="https://store.ims.ice.cyut.edu.tw/javascript/videojs-dash.min.js"></script>
-  <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap-filestyle.min.js"></script>
-  <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/video-js-cdn.min.css">
+  <head>
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <title>CYUT_<%= title %></title>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/jquery-3.4.1.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/popper.min.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/bootstrap.min.css">
   
-  <style>
-    H1 {
-      font-weight: bold;
-      text-align :center;
-      height:100px;
-      
-      font-size: 80px;
-      background:rgb(177, 214, 177);
-      }
-    button{
-      
-      height:50px;
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/dash.all.min.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/video.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/videojs-dash.min.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap-filestyle.min.js"></script>
+    <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/video-js-cdn.min.css">
     
-    }
-    div.sig{
-      float: right ;
-      margin:auto;
-      width:auto;
-      height: 0px;
+    <style>
+      button{
+        height:50px;
       }
-    a{
-      font-size: 30px;
-    }
-    
-    body{
-      background-color: lightgreen;
-      background-image: url("D:\room(test\url\朝陽.png");
-    }
+      H2{
+        font-size: 50px;
+        font-weight: bold;
+      }
+      p{
+        font-size: 80px;
+        color: rgb(133, 62, 214);
+      }
+      .head{
+        font-weight: bold;
+        font-size: 40px;
+      }
+      body {
+            background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/2019CYUT_seal.jpg/1200px-2019CYUT_seal.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: 40%;
+            
+      }
+
+
+
     </style>
-</head>
-
-<body>
-  <div class=sig>
-    <a href="/users/signin">登入</a>
-    <a href="/users/signup">註冊</a>
-   
-  </div>
-
-  <h1>直播平台</h1>
     
-  
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light row" style="max-height: 60px!important;">
+          <a class="navbar-brand head " href="/">CYUT_直播平台</a>
+          <div class="col"></div>
+          <div class="my-2 my-lg-0" style="font-size:25px;">
+            <a href="/users/signin">登入</a>
+            <a href="/users/signup">註冊</a>
+          </div>
+        </nav>
+      </div>
+  </head>
+  <script>
+  function getNowTime(){
+    var timeDate= new Date();
+    var tMonth = (timeDate.getMonth()+1) > 9 ? (timeDate.getMonth()+1) : '0'+(timeDate.getMonth()+1);
+    var tDate = timeDate.getDate() > 9 ? timeDate.getDate() : '0'+timeDate.getDate();
+    var tHours = timeDate.getHours() > 9 ? timeDate.getHours() : '0'+timeDate.getHours();
+    var tMinutes = timeDate.getMinutes() > 9 ? timeDate.getMinutes() : '0'+timeDate.getMinutes();
+    var tSeconds = timeDate.getSeconds() > 9 ? timeDate.getSeconds() : '0'+timeDate.getSeconds();
+    return timeDate= timeDate.getFullYear()+'/'+ tMonth +'/'+ tDate +' '+ tHours +':'+ tMinutes ;
+  }
+  document.write("目前時間:"+getNowTime()); 把時間顯示出來
+</Script>
+<!-- <body>
+  <h2 align=center>房間列表</h2>
+  </br>
+    //取得現有房間並建立連結
+    <% for (var key in list) {%>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="location.href='room?id=<%= key %>'">進入<%= key %></button>
+      </br></br>
+    <% }%>
 </body>
-
+-->
 
 </html>

@@ -1,14 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>購物車列表</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<head>
+		<title>購物車列表</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/bootstrap.min.css">
+		<link rel='stylesheet' href='/stylesheets/header.css' />
+	</head>
+	<style>
+		h1{
+			font-size: 50px;
+			font-weight: bold;
+		}
+		#shop p {
+			float: right ;
+			margin: auto;
+			width:auto;
+			height: 0px;
+			font-size: 30px;
+		} 
+		#shop {
+			float: right ;
+			margin: auto;
+			width:auto;
+			height:0px;    
+		}
+		#shop a button{
+			float: right ;
+			margin: auto;
+			width:auto;
+			height: 0px;
+			font-size: 30px;
+			padding:0px;
+		}
+		#end{
+			font-size: 30px;
 	
-	<input type="text" name='sellername' value=<%= sellername %> readonly="readonly" hidden>
-	<a href="/cart/cart/<%= sellername %>">商品列表</a>
+		}
+		body {
+            background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/2019CYUT_seal.jpg/1200px-2019CYUT_seal.jpg');
+            background-repeat: no-repeat;
+            background-position: 30px 60px;           
+            background-size: 10%;           
+      }
+	</style>
+	<div id="shop" align=center>
+		<p align=center>賣家：<label for="num"><%= sellername %></label>  
+		&nbsp;
+        <input hidden type="text" name="dataname" value='<%= sellername %>' disabled>
+		<input type="text" name='sellername' value=<%= sellername %> readonly="readonly" hidden>
+		<a align=center><button type="button" class="btn btn-link" onclick="location.href='/cart/cart/<%= sellername %>'">商品列表</button></a>
+		</p>
+	</div>
 	<script>
+		function getNowTime(){
+		  var timeDate= new Date();
+		  var tMonth = (timeDate.getMonth()+1) > 9 ? (timeDate.getMonth()+1) : '0'+(timeDate.getMonth()+1);
+		  var tDate = timeDate.getDate() > 9 ? timeDate.getDate() : '0'+timeDate.getDate();
+		  var tHours = timeDate.getHours() > 9 ? timeDate.getHours() : '0'+timeDate.getHours();
+		  var tMinutes = timeDate.getMinutes() > 9 ? timeDate.getMinutes() : '0'+timeDate.getMinutes();
+		  var tSeconds = timeDate.getSeconds() > 9 ? timeDate.getSeconds() : '0'+timeDate.getSeconds();
+		  return timeDate= timeDate.getFullYear()+'/'+ tMonth +'/'+ tDate +' '+ tHours +':'+ tMinutes ;
+		}
+		//document.write("目前時間:"+getNowTime()); //把時間顯示出來
+	  </Script>
+		<script>
         $("#car").click(function(){
           $.ajax({
             url: '../cart/cart/<%= sellername %>',
@@ -25,67 +82,95 @@
             }
           })
         })
-    </script>
-    <h1 class=room>購物車列表</h1>
-    
+	</script>
+	<h1 class=room >購物車列表</h1>
+	<div align=center>	
     <form id='myform' method='POST' action='#'>
-		<tbody>
-			<script>
-				var x=0;
-				var co = [];
-			</script>
-			<% for(var i = 0; i < result.length; i++) { %>
-				<ul>
-					<li>商品：<span type="text" name="productname" value='<%= result[i].productname %>' readonly="readonly" ><%= result[i].Pname %></li>
-					<li>單價：<input type="text" id="money_id<%=i%>"  name="money_id" value='<%= result[i].moneyId %>' readonly="readonly" disabled></li>
-					<li>數量：<input type="text" id="count<%=i%>" value="<%= result[i].count %>" readonly="readonly" disabled></li>
-					<li>價錢：<span type="text" id="aaa<%=i%>" value="" readonly="readonly"></span>
-					&emsp; <button type="submit" name="carts" value=<%= result[i]._id%>>刪除</button></li>
-				</ul>
+		<table class="table col-8" >
+            <thead style="font-size: 20px;">
+                <tr>
+				  <th></th>
+				  <th></th>	
+				  <th></th>	
+                  <th scope="col">商品名稱</th>
+                  <th SCOPE="col">單價</th>
+                  <th scope="col">數量</th>
+				  <th scope="col">價錢</th>
+                  <th></th>
+                </tr>
+            </thead>
+			<tbody style="font-size: 24px;">
+				<script>
+					var x=0;
+					var co = [];
+				</script>
+				<% for(var i = 0; i < result.length; i++) { %>	
+				<tr>
+					<th></th>	
+					<th></th>	
+					<th></th>			
+					<th>商品：<span type="text" id="productname<%=i%>" value='<%= result[i].productname %>' readonly="readonly" ><%= result[i].productname %></th>
+					<th>單價：<span type="text" id="money_id<%=i%>"  name="money_id" value='<%= result[i].moneyId %>' readonly="readonly" disabled><%= result[i].moneyId %></th>
+					<th>數量：<span type="text" id="count<%=i%>" value="<%= result[i].count %>" readonly="readonly" disabled><%= result[i].count %></th>
+					<th>價錢：<span type="text" id="aaa<%=i%>" value="<%= result[i].testsum %>" readonly="readonly"><%= result[i].testsum %></span>
+					&emsp; <button type="submit" class="btn btn-primary" name="carts" value=<%= result[i]._id%>>刪除</button></th>
+				</tr>
 				<br>
 				<script>
-					
-
-						var test1 = $("#money_id<%=i%>");
-						var test2 = $("#count<%=i%>");
+						var test1 = <%- result[i].moneyId %>;
+						var test2 = <%- result[i].count %>;
 						var sumSP = $("#aaa<%=i%>");
 	
-						var test001 = test1.val();
-						var test002 = test2.val();
-	
-						var sum = (test001-0)*(test002-0);
+						//console.log(test1)						
+						var sum = (test1)*(test2);
+						//console.log(sum)	
 						sumSP.text(sum);
 
-						//console.log(<%= result[i].testsum %>);
+						//console.log(<%= result[i].testsum %>);	
 						co.push(<%= result[i].testsum %>);
 						
 						x++;
-
-					
-				</script>
+		
+				</script>				
 				<% } %>
-				<tr>
-					總金額：<span id="ccc"></span>元
-				</tr>
-				<script>
-					var sss=0;
-					var jjj=$("#ccc");
-					for(var o=0;o<=x-1;o++){
-						sss += co[o];
-					}
-					//console.log(sss)
-					jjj.text(sss);
+				</tbody>
+		</table>
+	</form>
+</div>
+		<div align=center id=end>
+			總金額：<span id="ccc"></span>元
+	
+			<script>
+				var sss=0;
+				var jjj=$("#ccc");
+				for(var o=0;o<=x-1;o++){
+					sss += co[o];
+				}
+				//console.log(sss)
+				jjj.text(sss);
 					
-				</script>
-				<button type="submit" id="finish" name="Check" >結單</button>
-		</tbody>
-		<script>
-			$("#finish").click(function() {
-				$.ajax({
-
+			</script>
+			<button type="button" id="fdt" class="btn btn-primary" onclick="window.open('../finish')"  target="_blank " >結單</button>
+			<script>
+				var timetime = getNowTime();
+				$("#fdt").click(function(){
+				  $.ajax({
+					url: '../finishsell',
+					type: 'POST',
+					dataType: 'json',
+					data: {
+						buyername: '<%= buyername %>',
+						NowTime: timetime
+					},
+					success: function(data) {
+					  	 alert("data")
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+					  alert(JSON.parse(XMLHttpRequest.responseText).msg);
+					}
+				  })
 				})
-			}
-		</script>
-    </form>
+			</script>
+	</div>	
 </br>
 <% include footer %>

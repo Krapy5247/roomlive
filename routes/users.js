@@ -69,7 +69,6 @@ router.get('/profile', ensureAuthenticated, function(req, res, next) {
 
 router.get('/Buyer', ensureAuthenticated, function(req, res, next) {
   console.log(req.user)
-
   res.render('Buyer', {
     user: req.user.username,list:roomList.getList()
   });

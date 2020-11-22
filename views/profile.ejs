@@ -1,76 +1,67 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>Express Passport</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <head>
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <title>選擇身分</title>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/jquery-3.4.1.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/popper.min.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/bootstrap.min.css">
+  <script src="https://store.ims.ice.cyut.edu.tw/javascript/dash.all.min.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/video.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/videojs-dash.min.js"></script>
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap-filestyle.min.js"></script>
+    <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/video-js-cdn.min.css">
+
   <style>
-    H1{
-      font-size: 80px;
-      background:rgb(177, 214, 177);
+    .head{
       font-weight: bold;
-      height:100px;
-      
+      font-size: 40px;
     }
+
     h2{
-      height:50px;
-    }
-    div {
+      height:100px;
       font-size: 50px;
-      text-align:center;
-      overflow: hidden; 
-      height: auto;
+      font-weight: bold;
     }
     input{
-      font-size:30px;
-      width: 50px;
+      font-size:60px;
+      width: 100px;
       overflow: hidden; 
       float: center;
       text-align :center;
       margin: 0 auto; 
       text-decoration: none; 
     }
-    a{
-      font-size: 30px;
-      float:right;
-      text-align :right;
-      height:0px;
-    }
+    body {
+            background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/2019CYUT_seal.jpg/1200px-2019CYUT_seal.jpg');
+            background-repeat: no-repeat;
+            background-position: left;           
+            background-size: 10%;           
+      }
   </style>
 </head>
 
 <body>
-  <a href="/users/logout">登出</a>
-  <h1 align=center>選擇買賣家</h1>
-
-  <h2> </h2>
-  <div id="user" align=center>用戶名: <%= user %></div>
-  <div id="roomkey" align=center>金鑰: <%= roomkey %></div>
-  
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light row" style="max-height: 60px!important;">
+      <a class="navbar-brand head" href="/"> 直播平台 </a>
+      <div class="col"></div>
+      <div  class="my-2 my-lg-0 ">
+        <p style="font-size: 25px;">用戶名: <%= user %> 
+        <a href="/users/logout">登出</a></p>
+        
+      </div>
+    </nav>
+  </div>
   </br>
+  <h2 align=center>選擇買賣家 </h2>
   <div  align="center">
-    
-    <input type="button" style="width: 80px" onclick="javascript:location.href='/users/Buyer'"value="買家"></input>
-    
-    <input type="button" id='seller' style="width: 80px" onclick="javascript:location.href='/users/seller'"value="賣家"></input>
-    <script>
-    $("#seller").click(function() {
-    $.ajax({
-      url: '../users/seller',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        roomkey:'<%= roomkey %>',
-      },
-      success: function(data) {
-
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
-        alert(JSON.parse(XMLHttpRequest.responseText).msg);
-      }
-    })
-  });
-    </script>
+    <!--p style="font-size: 30px;">金鑰: <%= roomkey %></p></br-->
+    <input type="button" style="width: 170px" onclick="javascript:location.href='/users/Buyer'"value="買家"></input> 
+    <input type="button" style="width: 170px" onclick="javascript:location.href='/users/seller'"value="賣家"></input>
   </div>
 </body>
 

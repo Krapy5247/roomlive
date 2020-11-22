@@ -1,5 +1,5 @@
 module.exports = {
-  mongoURL: 'mongodb://localhost/test001',
+  mongoURL: 'mongodb://localhost/test002',
   http_port: 7000, //可修改
   https_port: 7001, //可修改
   cors_config: {

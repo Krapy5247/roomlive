@@ -3,6 +3,7 @@ var router = express.Router();
 //房間列表模組
 var roomlist = require('../models/roomlist');
 var User = require('../models/user')
+/* GET users listing. */
 router.get('/', function(req, res, next) {
   //取得現有房間列表
   let list = roomlist.getList();
@@ -48,7 +49,6 @@ router.post('/', function(req, res, next) {
   }
 
 });
-
 
 
 module.exports = router;

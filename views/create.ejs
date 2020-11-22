@@ -1,25 +1,68 @@
 <!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <script src="http://www.xiaoshu168.com/js/public/jquery.min.js"></script>
-</head>
-<style>
-    h1{
-        font-size: 50px;
-    }   
-</style>
-<% include header %>
-
-    <h1>增加商品</h1>
+    <head>
+        <title>上架商品</title>
+        <meta charset="utf-8">
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/bootstrap.min.css">
+        <script src="http://www.xiaoshu168.com/js/public/jquery.min.js"></script>
+    </head>
+    <style>
+        h1{
+            font-size: 50px;
+            font-weight: bold;
+        }
+        #user {
+            float: right ;
+            margin: auto;
+            width:auto;
+            height: 0px;
+            font-size: 30px;
+        } 
+        #shop {
+            float: left ;
+            margin: auto;
+            width:auto;
+            height:0px;    
+        }
+        #shop a button{
+            float: left ;
+            margin: auto;
+            width:auto;
+            height: 0px;
+            font-size: 30px;
+        }
+        h2{
+            height:30px;
+        }
+        body {
+            background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/2019CYUT_seal.jpg/1200px-2019CYUT_seal.jpg');
+            background-repeat: no-repeat;
+            background-position: 30px 60px;           
+            background-size: 10%;           
+      }
+    </style> 
+        <div id="user">
+            用戶名：<label for="num"><%= Roomname %></label>  
+            <input hidden type="text" name="dataname" value='<%= Roomname %>' disabled>
+        </div>
+        <div id="shop" align=center>
+            <a align=center><button type="button" class="btn btn-link"onclick="location.href='/com/shop'">商品列表</button></a>
+        </div>
+        <h1 align=center>上架商品</h1>
+        <h2></h2>
+   
     <form method="post">
-        房間：<input type="test" name="sellername" value='<%= Roomname %>' disabled>
-        商品：<input type="text" name="name">
-        價錢：<input type="text" name="money_id">
-        <button type="submit">新增</button>
-        <input value="sdgsdg" id="demo_input" type="file">
-        <textarea id="result" name="result" type="text"></textarea>
-        <p id="img_area"></p>
+        <div align=center>
+            商品：<input type="text" name="name">
+            價錢：<input type="text" name="money_id">
+            <button type="submit">新增</button></br></br>
+            <input value="sdgsdg" id="demo_input" type="file">
+            <textarea id="result" name="result" type="text" hidden></textarea>
+        </br>
+            <p id="img_area"></p>
+        </div>
     </form>
 
 <% include footer %>

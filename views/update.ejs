@@ -1,18 +1,85 @@
-
-<% include header %>
-    <h1>修改商品</h1>
+<!doctype html>
+<html>
+<head>
+    <title>修改商品</title>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://store.ims.ice.cyut.edu.tw/javascript/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://store.ims.ice.cyut.edu.tw/css/bootstrap.min.css">
+    <script src="http://www.xiaoshu168.com/js/public/jquery.min.js"></script>
+</head>
+<style>
+    h1{
+        font-size: 50px;
+        font-weight: bold;
+    }
+    #user {
+        float: right ;
+        margin: auto;
+        width:auto;
+        height: 0px;
+        font-size: 30px;
+    } 
+    #shop {
+        float: left ;
+        margin: auto;
+        width:auto;
+        height:0px;    
+    }
+    #shop a button{
+        float: left ;
+        margin: auto;
+        width:auto;
+        height: 0px;
+        font-size: 30px;
+    }
+    h2{
+        height:30px;
+    }
+    body {
+            background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/2019CYUT_seal.jpg/1200px-2019CYUT_seal.jpg');
+            background-repeat: no-repeat;
+            background-position: 30px 60px;           
+            background-size: 10%;           
+      }
+</style> 
+<div id="user">
+    用戶名：<label for="num"><%= Roomname %></label>  
+    <input hidden type="text" name="dataname" value='<%= Roomname %>' disabled>
+</div>
+<div id="shop" align=center>
+    <a align=center><button type="button" class="btn btn-link"onclick="location.href='/com/shop'">商品列表</button></a>
+</div>
+<h1 align=center>修改商品</h1>
+<h2></h2>
+<div align=center>
     <form method="post">
-        <ul>
+        <table class="table col-8">
+            <thead>
+                <tr>
+                  <th></th>
+                  <th scope="col">商品名稱</th>
+                  <th scope="col">價錢</th>
+                  <th scope="col">商品圖片</th>
+                  <th></th>
+                </tr>
+            </thead>
+            <tbody>
             <% for(var i = 0; i < result.length; i++) { %>
-            <li>
-                商品：<input type="text" name="productname" value=<%= result[i].productname %>>
-                價錢：<input type="text" name="money_id" value=<%= result[i].moneyId %>>
-                <input hidden type="text" name="_id" value=<%= result[i]._id %>>
-                <input type="radio" name='num' value=<%= i %>>
-                <img width=200 height=200 src= "<%= result[i].image %>">
-            </li>
+                <tr>
+                    <td style="vertical-align:middle;"><input type="radio" name='num' value=<%= i %> </td>
+                    <td style="vertical-align:middle;"><input type="text" name="productname" value=<%= result[i].productname %> </td>
+                    <td style="vertical-align:middle;"><input type="text" name="money_id" value=<%= result[i].moneyId %> </td>
+                    <input hidden type="text" name="_id" value=<%= result[i]._id %>>
+                    <td><img width=150 height=150 src= "<%= result[i].image %>"> </td>
+                    <th style="vertical-align:middle;"><button type="submit" class="btn btn-primary ">更新</button></th>
+                </tr>
             <% } %>
-        </ul>
-        <button type="submit">更新</button>
+            </tbody>
+        </table>
+        <div class="col-1"></div>
+        
+    </br>   
     </form>
-<% include footer %>
+</div>
+</html>
